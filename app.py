@@ -34,9 +34,6 @@ def register():
         # Hash the password before storing it
         password_hash = hashlib.sha256(password.encode()).hexdigest()
 
-        # Insert user data into the database
-        conn = sqlite3.connect('users.db')
-        cursor = conn.cursor()
         cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password_hash))
         conn.commit()
         conn.close()
